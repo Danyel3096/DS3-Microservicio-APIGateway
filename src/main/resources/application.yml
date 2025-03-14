@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: gateway-service
+    
+  cloud:
+    gateway:
+      routes:
+        - id: servicio-usuarios
+          uri: https://jsonplaceholder.typicode.com #http://localhost:8081
+          predicates:
+            - Path=/api/usuarios
+          filters:
+            - RewritePath=/api/usuarios, /users
+
+        - id: servicio-autenticacion
+          uri: https://randomuser.me #http://localhost:8082
+          predicates:
+            - Path=/api/auth
+          filters:
+            - SetPath=/api/?results=5
+
+        - id: servicio-productos
+          uri: https://dummyjson.com #http://localhost:8083
+          predicates:
+            - Path=/api/productos
+          filters:
+            - RewritePath=/api/productos, /products
+        
+        - id: servicio-inventario
+          uri: https://dummyjson.com #http://localhost:8084
+          predicates:
+            - Path=/api/inventario
+          filters:
+            - RewritePath=/api/inventario, /products
+
+        - id: servicio-ordenes
+          uri: https://dummyjson.com #http://localhost:8085
+          predicates:
+            - Path=/api/ordenes
+          filters:
+            - RewritePath=/api/ordenes, /carts
+
+        - id: servicio-entregas
+          uri: https://api.postman.com #http://localhost:8086
+          predicates:
+            - Path=/api/entregas
+          filters:
+            - RewritePath=/api/entregas, /collections
+
+        - id: servicio-monitoreo
+          uri: https://jsonplaceholder.typicode.com #http://localhost:8087
+          predicates:
+            - Path=/api/monitoreo
+          filters:
+            - RewritePath=/api/monitoreo, /posts
+
+server:
+  port: 8080
