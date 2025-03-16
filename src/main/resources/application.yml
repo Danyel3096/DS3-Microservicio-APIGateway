@@ -5,54 +5,29 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: servicio-usuarios
-          uri: https://jsonplaceholder.typicode.com #http://localhost:8081
+        - id: users-service
+          uri: http://localhost:8081
           predicates:
-            - Path=/api/usuarios
-          filters:
-            - RewritePath=/api/usuarios, /users
+            - Path=/users/**
 
-        - id: servicio-autenticacion
-          uri: https://randomuser.me #http://localhost:8082
+        - id: products-service
+          uri: http://localhost:8082
           predicates:
-            - Path=/api/auth
-          filters:
-            - SetPath=/api/?results=5
+            - Path=/products/**
 
-        - id: servicio-productos
-          uri: https://dummyjson.com #http://localhost:8083
+        - id: orders-service
+          uri: http://localhost:8083
           predicates:
-            - Path=/api/productos
-          filters:
-            - RewritePath=/api/productos, /products
-        
-        - id: servicio-inventario
-          uri: https://dummyjson.com #http://localhost:8084
-          predicates:
-            - Path=/api/inventario
-          filters:
-            - RewritePath=/api/inventario, /products
+            - Path=/orders/**
 
-        - id: servicio-ordenes
-          uri: https://dummyjson.com #http://localhost:8085
+        - id: deliveries-service
+          uri: http://localhost:8084
           predicates:
-            - Path=/api/ordenes
-          filters:
-            - RewritePath=/api/ordenes, /carts
+            - Path=/deliveries/**
 
-        - id: servicio-entregas
-          uri: https://api.postman.com #http://localhost:8086
+        - id: monitoring-service
+          uri: http://localhost:9090
           predicates:
-            - Path=/api/entregas
-          filters:
-            - RewritePath=/api/entregas, /collections
-
-        - id: servicio-monitoreo
-          uri: https://jsonplaceholder.typicode.com #http://localhost:8087
-          predicates:
-            - Path=/api/monitoreo
-          filters:
-            - RewritePath=/api/monitoreo, /posts
-
+            - Path=/monitoring/**
 server:
   port: 8080
