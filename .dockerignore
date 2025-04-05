@@ -1,0 +1,28 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Sistema operativo / IDE
+*.iml
+.idea/
+.vscode/
+*.log
+*.class
+*.swp
+.DS_Store
+Thumbs.db
+
+# Test output
+surefire-reports/
+failsafe-reports/
