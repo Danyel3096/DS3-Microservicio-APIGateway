@@ -17,17 +17,6 @@ public class JwtUtil {
     @Value("${JWT_SECRET}")
     private String secretKey;
 
-    private final long jwtExpiration;
-
-    public JwtUtil() {
-        this.jwtExpiration = 30L * 60000; // 30 minutos
-    }
-
-    // Obtener tiempo de expiración
-    public long getExpirationTime() {
-        return jwtExpiration;
-    }
-
     // Obtener clave secreta para firmar el token
     private SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
